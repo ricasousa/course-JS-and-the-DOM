@@ -32,4 +32,6 @@ Há três etapas distintas durante o ciclo de vida de um evento. São elas:
 
 Quando adicionamos um novo elemento, o navegador precisa fazer um cálculo de reflow para determinar o novo layout da tela e, depois, repaint (redesenhar) a tela. E isso leva tempo.
 
- A principal diferença é que, como o fragmento de documento(DocumentFragment) não é parte da estrutura ativa da árvore de documentos, mudanças feitas no fragmento não afetam o documento, causam refluxo nem geram impacto no desempenho que pode ocorrer quando há mudanças.
+A principal diferença é que, como o fragmento de documento(DocumentFragment) não é parte da estrutura ativa da árvore de documentos, mudanças feitas no fragmento não afetam o documento, causam refluxo nem geram impacto no desempenho que pode ocorrer quando há mudanças.
+
+Refluxo é o processo de calcular as dimensões e a posição dos elementos da página. Essa é uma tarefa computacionalmente intensiva (lenta). Redesenho é o processo de desenhar ou esboçar os pixels na tela. É mais rápido que o refluxo, mas não chega a ser um processo rápido. Queremos garantir que seu código gere o menor número possível de refluxos.
