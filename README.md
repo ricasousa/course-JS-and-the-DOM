@@ -24,9 +24,17 @@ unmonitorEvents(document);
 
 Há três etapas distintas durante o ciclo de vida de um evento. São elas:
 
-* a etapa de **captura**
-* a etapa do **alvo**
-* e a etapa de **propagação**
+* a etapa de **captura/capturing**
+* a etapa do **alvo/target**
+* e a etapa de **propagação/bubbling**
+
+Ao clicar em um elemento na página, o processo de **captura/capturing** se inicia desde a tag `HTML` e vai descendo até chegar no elemento que recebeu o evento(click, keypress e assim por diante). Nesse momento, ele muda para a fase **alvo/target**. Após essa etapa, inicia-se a etapa de **propagação/bubbling** que começa a subir toda a árvore da DOM.
+
+Exemplo:
+
+Quando informamos ao método `addEventListener` o terceiro parâmetro(`useCapture`) como **true**, o evento será disparado na fase de captura e não de propagação. O valor default é **false**.
+
+`.addEventListener(event, function, [true/false])`
 
 # Reflow e Repaint
 
@@ -35,3 +43,11 @@ Quando adicionamos um novo elemento, o navegador precisa fazer um cálculo de re
 A principal diferença é que, como o fragmento de documento(DocumentFragment) não é parte da estrutura ativa da árvore de documentos, mudanças feitas no fragmento não afetam o documento, causam refluxo nem geram impacto no desempenho que pode ocorrer quando há mudanças.
 
 Refluxo é o processo de calcular as dimensões e a posição dos elementos da página. Essa é uma tarefa computacionalmente intensiva (lenta). Redesenho é o processo de desenhar ou esboçar os pixels na tela. É mais rápido que o refluxo, mas não chega a ser um processo rápido. Queremos garantir que seu código gere o menor número possível de refluxos.
+
+# Event Loop
+
+* Call Stack - LIFO(Last In First Out);
+* Browser(Web APIs - setTimout e addEventListener são alguns exemplos);
+* Event Queue;
+
+Quando alguma função de Web API é necessária, ela fica disponível no Browser e quando se faz necessária(setTimeout ou EventListener) é movida para a fila e quando a Call Stack está vazia, ela é executada.

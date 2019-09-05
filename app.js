@@ -97,12 +97,24 @@ document.addEventListener('click', function() {
   divLog.innerHTML += `The document was clicked<br />`;
 });
 
-document.querySelector(`.my-tests`).addEventListener(`click`, event => {
-  divLog.innerHTML += `Clicked element: ` + event.target.nodeName + `<br />`;
+document.body.addEventListener('click', function() {
+  const message = `
+    The document body was clicked! <br />
+    Trigger on <strong>BUBBLING</strong> phase! <br />
+  `;
+  divLog.innerHTML += message;
 });
 
 document.body.addEventListener('click', function() {
-  divLog.innerHTML += `The document body was clicked! <br />`;
+  const message = `
+    The document body was clicked! <br />
+    Trigger on <strong>CAPTURING</strong> phase! <br />
+  `;
+  divLog.innerHTML += message;
+}, true);
+
+document.querySelector(`.my-tests`).addEventListener(`click`, event => {
+  divLog.innerHTML += `Clicked element: ` + event.target.nodeName + `<br />`;
 });
 
 h6.addEventListener(
@@ -138,4 +150,5 @@ for (let i = 1; i <= 200; i++) {
 }
 document.body.appendChild(fragment);
 const endingTime = performance.now();
-divLog.innerHTML = 'Este código levou ' + (endingTime - startingTime) + ' milliseconds.';
+divLog.innerHTML =
+  'Este código levou ' + (endingTime - startingTime) + ' milliseconds. <br />';
