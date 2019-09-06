@@ -28,11 +28,13 @@ Há três etapas distintas durante o ciclo de vida de um evento. São elas:
 * a etapa do **alvo/target**
 * e a etapa de **propagação/bubbling**
 
-Ao clicar em um elemento na página, o processo de **captura/capturing** se inicia desde a tag `HTML` e vai descendo até chegar no elemento que recebeu o evento(click, keypress e assim por diante). Nesse momento, ele muda para a fase **alvo/target**. Após essa etapa, inicia-se a etapa de **propagação/bubbling** que começa a subir toda a árvore da DOM.
+Ao clicar em um elemento na página, o processo de **captura/capturing** se inicia desde a tag `HTML` e vai descendo até chegar no elemento que recebeu o evento(click, keypress e assim por diante). Nesse momento, ele muda para a fase **alvo/target** que identifica o elemento clicado. Após essa etapa, inicia-se a etapa de **propagação/bubbling** que começa a subir toda a árvore da DOM e consecutivamente disparar os eventos.
+
+Se por alguma razão desejar que o evento seja disparado na fase de captura, deverá passar um terceiro parâmetro para o `.addEventListener`.
 
 Exemplo:
 
-Quando informamos ao método `addEventListener` o terceiro parâmetro(`useCapture`) como **true**, o evento será disparado na fase de captura e não de propagação. O valor default é **false**.
+Quando informamos ao método `addEventListener` o terceiro parâmetro(`useCapture`) como **true**, o evento será disparado na fase de captura(descendo) e não de propagação. O valor default é **false**.
 
 `.addEventListener(event, function, [true/false])`
 
